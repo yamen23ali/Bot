@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     
     User.create!(messenger_id: messenger_id )
 
-    User.send_message('السلام عليكم  مرحبا بكم في اول تطبيق إسلامي على الفيس')
+    User.send_message('السلام عليكم :) مرحبا بك في أول تطبيق إسلامي من نوعه على الفيسبوك سنقوم بإرسال آيات و أحاديث شريفة يوميا إليك .. نرجو لك الفائدة و الأجر')
 
     respond_to do |format|
       format.json { render :text => "Ok" }
