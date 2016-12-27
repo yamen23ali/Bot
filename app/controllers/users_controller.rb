@@ -26,7 +26,6 @@ class UsersController < ApplicationController
 
   def send_message
     User.send_message( params['message'] )
-    binding.pry
     redirect_to send_path
   end
   # GET /users
