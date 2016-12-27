@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+
+
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def challenge
@@ -11,8 +13,12 @@ class UsersController < ApplicationController
 
   def optin
     optIn = Hashie::Mash.new(params)
-    User.create!(messenger_id: optIn.entry[0].messaging[0].sender.id )
+    messenger_id = optIn.entry[0].messaging[0].sender.id
     
+    User.create!(messenger_id: messenger_id)
+
+    User.send_message('السلام عليكم  مرحبا بكم في اول تطبيق إسلامي على الفيس')
+
     respond_to do |format|
       format.json { render :text => "Ok" }
     end
