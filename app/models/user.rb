@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 
 	def self.send_all(message)
 		User.all.each{|user|
-			send_message(message, use.messenger_id)
+			send_message(message, user.messenger_id)
 		}
 	end
 end
