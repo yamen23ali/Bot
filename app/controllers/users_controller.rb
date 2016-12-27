@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     optIn = Hashie::Mash.new(params)
     messenger_id = optIn.entry[0].messaging[0].sender.id
     
-    User.create!(messenger_id: messenger_id)
+    User.create!(messenger_id: messenger_id )
 
     User.send_message('السلام عليكم  مرحبا بكم في اول تطبيق إسلامي على الفيس')
 
