@@ -15,9 +15,9 @@ class UsersController < ApplicationController
     optIn = Hashie::Mash.new(params)
     messenger_id = optIn.entry[0].messaging[0].sender.id
     
-    User.create!(messenger_id: messenger_id )
+    User.create!(messenger_id: messenger_id ) if User.where(messenger_id: messenger_id ).blank?
 
-    User.send_message('السلام عليكم :) مرحبا بك في أول تطبيق إسلامي من نوعه على الفيسبوك سنقوم بإرسال آيات و أحاديث شريفة يوميا إليك .. نرجو لك الفائدة و الأجر')
+    User.send_welcome_message(messenger_id)
 
     respond_to do |format|
       format.json { render :text => "Ok" }
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   end
 
   def send_message
-    User.send_message( params['message'] )
+    User.send_all( params['message'] )
     redirect_to send_path
   end
   # GET /users
